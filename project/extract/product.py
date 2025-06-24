@@ -1,7 +1,7 @@
 # from databricks.connect import DatabricksSession
 import ibis
 
-def main():
+def get_product_counts():
     # spark = DatabricksSession.builder.remote(serverless=True).getOrCreate()
     con = ibis.databricks.connect(server_hostname="TODO.cloud.databricks.com", http_path="/sql/1.0/warehouses/TODO")
     QUERY = """
@@ -22,5 +22,3 @@ def main():
     result = con.sql(QUERY).execute()
     print(result)
 
-if __name__ == "__main__":
-    main()

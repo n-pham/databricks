@@ -5,6 +5,12 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
+    "dagster>=1.10.21",
     "databricks-connect>=16.1.6",
     "ibis-framework[databricks]>=10.6.0",
+]
+
+[dependency-groups]
+dev = [
+    "dagster-webserver>=1.10.21",
 ]
