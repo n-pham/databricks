@@ -1,7 +1,9 @@
-from databricks.connect import DatabricksSession
+# from databricks.connect import DatabricksSession
+import ibis
 
 def main():
-    spark = DatabricksSession.builder.remote(serverless=True).getOrCreate()
+    # spark = DatabricksSession.builder.remote(serverless=True).getOrCreate()
+    con = ibis.databricks.connect(server_hostname="TODO.cloud.databricks.com", http_path="/sql/1.0/warehouses/TODO")
     QUERY = """
         with products (product_id, price) as (
             select 'p1', 5
@@ -15,8 +17,10 @@ def main():
             ) as expensive_count
         from products
     """
-    df = spark.sql(QUERY)
-    df.show(10)
+    # df = spark.sql(QUERY)
+    # df.show(10)
+    result = con.sql(QUERY).execute()
+    print(result)
 
 if __name__ == "__main__":
     main()
